@@ -18,6 +18,20 @@
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding description}"/>
                     <GridViewColumn Header="Completed" DisplayMemberBinding="{Binding isCompleted}"/>
                     <GridViewColumn Header="Time" DisplayMemberBinding="{Binding dateTime}"/>
+                    <GridViewColumn Header="Toggle">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Toggle" Click="ToggleTodoFromDb" CommandParameter="{Binding id}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Delete">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Click="DeleteTodoFromDb" CommandParameter="{Binding id}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -25,9 +25,23 @@ namespace TodoApp.src.Views
             }
         }
 
-        public void OpenAddTodo(object sender, RoutedEventArgs e) 
+        private void DeleteTodoFromDb(object sender, RoutedEventArgs e)
         {
-            //AddTodoClicked?.Invoke(this, EventArgs.Empty);
+            if (sender is Button button && button.CommandParameter is int id)
+            {
+                TodoUtil.DeleteTodo(id);
+                FetchAllTodos();
+            }
+            
+        }
+        
+        private void ToggleTodoFromDb(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is int id)
+            {
+                TodoUtil.ToggleTodo(id);
+                FetchAllTodos();
+            }
         }
     }
 }

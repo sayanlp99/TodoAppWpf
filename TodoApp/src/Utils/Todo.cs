@@ -33,6 +33,7 @@ namespace TodoApp.src.Utils
                 while (reader.Read())
                 {
                     Todo todo = new Todo();
+                    todo.id = Convert.ToInt16(reader["id"]);
                     todo.title = Convert.ToString(reader["title"]);
                     todo.description = Convert.ToString(reader["description"]);
                     todo.isCompleted = Convert.ToBoolean(reader["isCompleted"]);
@@ -53,6 +54,24 @@ namespace TodoApp.src.Utils
             };
             ExecuteStoredProcedure("InsertTodo", parameters);
             Console.WriteLine("Todo inserted successfully.");
+        }
+
+        public static void DeleteTodo(int todoId)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@id", todoId)
+            };
+            ExecuteStoredProcedure("DeleteTodo", parameters);
+            Console.WriteLine("Todo deleted successfully.");
+        }
+
+        public static void ToggleTodo(int todoId)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@id", todoId)
+            };
+            ExecuteStoredProcedure("ToggleTodo", parameters);
+            Console.WriteLine("Todo toggled successfully.");
         }
 
     }
